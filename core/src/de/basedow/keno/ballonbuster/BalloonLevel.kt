@@ -73,7 +73,7 @@ class BalloonLevel(game: Game) : BaseScreen(game) {
         }
 
         poppedLabel.setText("Popped $popped")
-        escapedLabel.setText("Excaped: $escaped")
+        escapedLabel.setText("Escaped: $escaped")
         if (clickCount > 0) {
             val percent = 100 * popped / clickCount
             hitRatioLabel.setText("Hit Ratio: $percent%")
