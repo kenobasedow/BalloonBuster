@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
+import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 
 class BalloonLevel(game: Game) : BaseScreen(game) {
@@ -58,7 +59,10 @@ class BalloonLevel(game: Game) : BaseScreen(game) {
             ballon.addListener(object : InputListener() {
                 override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                     popped++
-                    ballon.remove()
+                    ballon.addAction(Actions.sequence(
+                            Actions.fadeOut(0.5f),
+                            Actions.removeActor()
+                    ))
                     return true
                 }
             })
