@@ -1,5 +1,6 @@
 package de.basedow.keno.ballonbuster
 
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.MathUtils
 
@@ -13,8 +14,9 @@ class Balloon() : BaseActor() {
     var offsetX = -100f
 
     init {
-        texture = Texture("red-balloon.png")
+        texture = Texture("gray-balloon.png")
         x = offsetX
+        color = Color(MathUtils.random(0f, 1f), MathUtils.random(0f, 1f), MathUtils.random(0f, 1f),1f)
     }
 
     override fun act(delta: Float) {
