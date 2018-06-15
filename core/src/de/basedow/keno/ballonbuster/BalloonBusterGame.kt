@@ -5,6 +5,6 @@ import com.badlogic.gdx.Game
 class BalloonBusterGame : Game() {
 
     override fun create() {
-        screen = BalloonLevel(this)
+        screen = BalloonMenu(this)
     }
 }
