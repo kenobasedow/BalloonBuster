@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.MathUtils
 
-class Balloon() : BaseActor() {
+class Balloon : BaseActor() {
 
     val speed = 80f * MathUtils.random(0.5f, 2f)
     val amplitude = 50f * MathUtils.random(0.5f, 2f)
