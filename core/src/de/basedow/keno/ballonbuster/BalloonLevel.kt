@@ -27,6 +27,9 @@ class BalloonLevel(game: Game) : BaseScreen(game) {
     private val escapedLabel: Label
     private val hitRatioLabel: Label
 
+    private var gameOver = false
+    private val gameOverLabel: Label
+
     init {
         background.texture = Texture("sky.jpg")
         background.setPosition(0f, 0f)
@@ -48,6 +51,12 @@ class BalloonLevel(game: Game) : BaseScreen(game) {
         hitRatioLabel.setFontScale(2f)
         hitRatioLabel.setPosition(420f, 440f)
         uiStage.addActor(hitRatioLabel)
+
+        gameOverLabel = Label("Game Over", style)
+        gameOverLabel.setFontScale(4f)
+        gameOverLabel.setPosition(180f, 250f)
+        gameOverLabel.isVisible = false;
+        uiStage.addActor(gameOverLabel)
     }
 
     override fun update(delta: Float) {
@@ -76,6 +85,16 @@ class BalloonLevel(game: Game) : BaseScreen(game) {
             }
         }
 
+        if (escaped >= 100) {
+            gameOver = true;
+            isPaused = true;
+            gameOverLabel.addAction(Actions.parallel(
+                    Actions.alpha(0f),
+                    Actions.show(),
+                    Actions.fadeIn(2f)
+            ))
+        }
+
         poppedLabel.setText("Popped $popped")
         escapedLabel.setText("Escaped: $escaped")
         if (clickCount > 0) {
@@ -85,6 +104,11 @@ class BalloonLevel(game: Game) : BaseScreen(game) {
     }
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+        if (gameOver) {
+            game.screen = BalloonMenu(game)
+            return false
+        }
+
         clickCount++
         return false
     }
