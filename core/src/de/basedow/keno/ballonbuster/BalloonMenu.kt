@@ -24,7 +24,7 @@ class BalloonMenu(game: Game) : BaseScreen(game) {
     override fun update(delta: Float) {}
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
-        game.screen = BalloonLevel(game)
+        game.screen = BalloonGreenAndRedLevel(game)
         return true
     }
 }
